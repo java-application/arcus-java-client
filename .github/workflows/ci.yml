@@ -74,3 +74,18 @@ jobs:
         cd ~/arcus/scripts && echo -e ${ARCUS_CONF} > conf/test.conf && ./arcus.sh quicksetup conf/test.conf
     - name: Test ARCUS Client
       run: mvn test -DUSE_ZK=false -DARCUS_HOST=127.0.0.1:11212 && mvn test -DUSE_ZK=true
+      # 추가된 스텝: Dependabot Alert CSV Export
+    - name: Dependabot Alert CSV Export
+      uses: ShamKarthikS-Hexaware/dependabot-alert-export@v1.0
+      with:
+        GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+        org_name: 'YOUR_ORG_NAME'
+        repo_name: 'YOUR_REPO_NAME'
+        csv_path: 'data/vulnerability.csv'
+
+      # 생성된 CSV 파일을 아티팩트로 업로드
+    - name: Upload Vulnerability report
+      uses: actions/upload-artifact@v2
+      with:
+        name: vulnerability_report
+        path: data/vulnerability.csv
