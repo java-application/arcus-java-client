@@ -79,8 +79,8 @@ jobs:
       uses: ShamKarthikS-Hexaware/dependabot-alert-export@v1.0
       with:
         GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
-        org_name: 'YOUR_ORG_NAME'
-        repo_name: 'YOUR_REPO_NAME'
+        org_name: 'java-application'
+        repo_name: 'arcus-java-client'
         csv_path: 'data/vulnerability.csv'
 
       # 생성된 CSV 파일을 아티팩트로 업로드
