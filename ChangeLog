@@ -1,0 +1,345 @@
+2022-04-26 [version 1.13.3]
+	* [FEATURE] print select delay in case of too many empty selected keys.
+	* [FEATURE] shutdown client more gracefully.
+	* [FEATURE] add closeChannel interface in MemcachedNode.
+	* [FEATURE] apply Github-CI to test client.
+	* [FEATURE] return true from isPipeOperation() of
+	            CollectionBulkInsertOperationImpl.
+	* [FEATURE] add timeout duration threshold.
+	* [FEATURE] use System.nanoTime() instead of System.currentTimeMillis()
+	            in MemcachedConnection.
+	* [FEATURE] prevent duplicate nodes from being added into the reconnect queue.
+	* [FEATURE] delayed switchover task from switchover event of zookeeper.
+	* [FEATURE] add isIdempotentOperation in Operation interface.
+	* [FEATURE] block to use redistribute failure mode in ArcusClient.
+	* [FEATURE] add bkey validation.
+	* [FEATURE] upgrade log4j version for security vulnerabilities.
+	* [FEATURE] support cancel failure mode in mget, mgets operation.
+	* [FEATURE] support expanded replication group.
+	* [FEATURE] add node version statistics for monitoring mbean
+	* [FEATURE] update node statistics when the cache list changes.
+	* [FEATURE] throw exception if memcached nodes do not exist at first.
+	* [ENHANCE] do switchover task immediately if readQ is empty or
+	            node is going to be reconnected.
+	* [ENHANCE] Enhance timeout exception message.
+	* [ENHANCE] Remove getRepresentKey() and add getMemcachedNode() to
+	            BTreeSMGet to skip key iteration for searching MemcachedNode.
+	* [ENHANCE] filter duplicated operation from not writeQ but readQ.
+	* [ENHANCE] do not rearrange list when removing addresses of changed
+	            replicaion groups.
+	* [ENHANCE] add the TimeoutException message to broad casting operation.
+	* [FIX] set channel to node first before connecting  it in assertion mode.
+	* [FIX] change the fast shutdown time.
+	* [FIX] fix ConcurrentModificationException in removing entry of reconnect map.
+	* [FIX] removed prevAddrMap field to update cachelist correctly.
+	* [FIX] resolve ConcurrentModificationException occurs in handleNodesToRemove.
+	* [FIX] reset operation state in resend.
+	* [FIX] change the order of moveOperation and ChangeRole on switchover.
+	* [FIX] remove unnecessary String.valueOf in ArcusClient.asyncMopUpdate.
+	* [FIX] CollectionOperationImpl command buffer.
+	* [FIX] update node name when switchover.
+	* [FIX] fixed long type string to unsigned long type string on bkey.
+	* [FIX] Operation command buffer size.
+	* [FIX] reset operation state in writing state when moving operations to
+	        new master node.
+	* [FIX] fixed parsing only one result after switchover in pipe operation.
+	* [FIX] add null check in attachment removal of selection key.
+	* [FIX] do not create connection pool array if node address is empty.
+	* [FIX] on the bulk operation only the timed out operation set the timed out.
+	* [CLEANUP] remove socket channel argument in MemcachedNode constructor.
+	* [CLEANUP] remove createKeyIfNotExist field and duplicate codes in
+	            collection insert classes.
+	* [CLEANUP] refactored ReconnectQueue of MemcachedConnection.
+	* [CLEANUP] add comment about avoiding ConcurrentModificationException.
+	* [CLEANUP] refactored CollectionGet.
+	* [CLEANUP] refactored updateReplConnections in MemcachedConnection.
+	* [CLEANUP] separate constructor for searching condition.
+	* [CLEANUP] refactored bkey.
+	* [CLEANUP] isDebugEnabled and isInfoEnabled flag to print debug log.
+	* [CLEANUP] refactored get exist bkey.
+	* [CLEANUP] fixed the code indentation.
+	* [CLEANUP] refactored the method for validating replication group.
+	* [CLEANUP] refactored the method to checking switchover.
+	* [CLEANUP] refactored the cache list update functions of replication cluster.
+	* [CLEANUP] return immutable collection of node and groups.
+	* [CLEANUP] re-naming variables and methods in MemcachedConnection more clearly.
+	* [CLEANUP] removed readBufferSize argument in MemcachedConnection().
+	* [CLEANUP] refactor ArcusClient initialization codes.
+	* [CLEANUP] incorrect indentation.
+	* [CLEANUP] removed hashAlgorithm argument from ArcusKetamaLocator constructor.
+	* [CLEANUP] removed unnecessary log warn message in getAllOperations().
+	* [TEST] fix build error in ClientBaseCase test class.
+	* [TEST] use assertEquals to check unexpected value from get operation in
+	         BulkStoreTest.
+	* [DOC] update btree api doc.
+	* [DOC] add ci and license badge.
+	* [DOC] fixed percent encoding
+	* [DOC] add description of collection attribute.
+	* [DOC] add the precaution about character encoding.
+	* [DOC] Update docs (fix typo, fix outdated code sample). 
+	* [DOC] add jdk requirements to README.md.
+	* [DOC] fix invalid javadoc param.
+
+2021-05-08 [version 1.13.2]
+	* [FIX] do not use default transcoder.
+
+2021-05-04 [version 1.13.1]
+	* [FIX] support library backward compatibility for arcus-spring
+	* [FIX] fix compatibility with Java 6, 7, 8 for ByteBuffer
+	* [TEST] fix sleep time for item to be expired
+
+2021-03-17 [version 1.13.0]
+	* [FEATURE] support mgets command.
+	* [FEATURE] change return type of kv API. (Future => OperationFuture)
+	* [FEATURE] set the max key size to 4000.
+	* [FIX] invalid key length in bop mget, smget command.
+	* [FIX] cancel sync operations when an exception occurred.
+	* [ENHANCE] add node information to the cancellation message.
+	* [ENHANCE] add the specific TimeoutException message.
+	* [ENHANCE] do not check the op existence in readQ when writing it.
+	* [ENHANCE] do not cancel the operations if it is first connecting.
+	* [ENHANCE] reflected only the changed groups in hash ring.
+	* [CLEANUP] apply whitespace checkstyle.
+	* [TEST] bump junit from 4.4 to 4.13.1.
+	* [DOC] add the description of future api.
+	* [DOC] change the description of the max item size.
+	* [DOC] adjust some format to improve doc readability.
+
+2020-08-04 [version 1.12.1]
+	* [FEATURE] asyncDeleteBulk
+	* [FEATURE] add maven plugin of checkstyle
+	* [FEATURE] apply checkstyle
+	* [CLEANUP] apply Indentation checkstyle
+	* [CLEANUP] apply LineLength checkstyle
+	* [CLEANUP] reduce line length in test sources
+	* [CLEANUP] reduce line length in client sources
+	* [CLEANUP] apply Import checkstyle
+	* [CLEANUP] replace tab charcter to space
+	* [CLEANUP] remove nested block
+	* [CLEANUP] prevent instantiation of utility classes
+	* [CLEANUP] remove duplicate code for parsing response of
+	            BTreeGetBulkOperation
+	* [CLEANUP] merged CollectionUpsertOperation to CollectionStoreOperation
+	* [CLEANUP] solve hash point collision with comparison socket address of
+	            node
+	* [CLEANUP] renamed store to insert of collection
+	* [CLEANUP] update comment for collection response format
+	* [CLEANUP] change some javadoc comments to use code tag
+	* [CLEANUP] don't occur switchover in sop exist operation.
+	* [CLEANUP] remove non-javadoc comments
+	* [CLEANUP] refactor asyncSetBulk, asyncDeleteBulk
+	* [CLEANUP] deprecate bulkService API
+	* [CLEANUP] refactored the constructor functions of KetamaNodeLocator.
+	* [CLEANUP] refactor the parts that use socketChannel API
+	* [CLEANUP] remove the authentication failure log when OperationException
+	            occurs
+	* [CLEANUP] refactored the handleNodeManageQueue() method
+	* [CLEANUP] refactored the attemptReconnects() method
+	* [CLEANUP] refactored the ENABLE_REPLICATION code tag
+	* [CLEANUP] refactered the updateConnections() method
+	* [CLEANUP] separated the updateReplConnections() from the
+	            updateConnections()
+	* [CLEANUP] moved the selector wakeup code into putMemcachedQueue()
+	* [FIX] Canceling the operations if input queue of node is full when moving
+	        operations
+	* [ENHANCE] destroy read queue of removed node
+	* [ENHANCE] do not cancel the operation twice when using authentication in
+	            setupResend of TCPMemcachedNodeImpl
+	* [TEST] refactor test codes related setUp and tearDown
+
+2020-03-16 [version 1.12.0]
+	* [FEATURE] change max element bytes
+	* [FIX] ConcurrentModificationException in foreach loop of
+	        SelectionKey in handleIO
+	* [FIX] May produce NullPointerException when checking
+	        the operation has been canceled
+	* [ENHANCE] Skip the cancelled operation has not been
+	            written to buffer
+	* [CLEANUP] convert log4j configuration file format from
+	            properties to xml
+	* [CLEANUP] convert tab to space in pom.xml
+	* [CLEANUP] remove readQ overflow
+	* [CLEANUP] refactor version operation handling
+	* [CLEANUP] edit getMaxReconnectDelay method comment
+	* [TEST] fix travis failed test case when USE_ZK is true
+	* [TEST] ignore ConsistentHashingTest
+	* [DOC] fix broken link of flush in other API
+	* [DOC] update description of logging
+	* [DOC] remove bold on link in btree API
+	* [OTHER] upgrade log4j version for security vulnerabilities
+	* [OTHER] upgrade zookeeper version 3.4.5=>3.4.14
+
+2019-06-05 [version 1.11.5]
+	* [FIX] asyncBopIncr,asyncBopDecr command initial range problem
+	* [CLEANUP] remove TIMEDOUT state of operation
+	* [CLEANUP] remove the limitation of bopGetBulk key size
+	* [DOC] Changed ATTR_MISMATCH response description
+			according to spec change of 'bop smget'
+
+2018-11-08 [version 1.11.4]
+	* [FIX] change FAKE_SERVER_NODE check method
+	* [FIX] do not cancel an operation already canceled in setupResend
+
+2018-09-28 [version 1.11.3]
+	* [FEATURE] Adding support for SLF4J logging
+	* [FIX] Set next operation index of pipedUpdateOp during switchover
+	* [ENHANCE] CacheManager thread do not stop until shutdown is requested
+	* [TEST] Check unit test exception handling
+	* [TEST] Smget test modification for subversion
+
+2018-06-26 [version 1.11.2]
+	* [Fix] bulk and pipe operation buffer overhead changed from 64 to 128
+	* [Fix] Select separator depending on node version.
+	* [ENHANCE] Gen client info string even if an exception occur.
+	* [ENHANCE] Print current cache list when reconnect to ZK.
+	* [TEST] Fix travis-ci test error due to memcached port conflict.
+
+2018-06-08 [version 1.11.1]
+	* [Fix] CacheManager shutdown by exceptions while reconnect ZooKeeper.
+	* [FIX] ZkInitLatch countDown bug when reconnect with ZK session timeout.
+	* [Fix] Instance version comparsion bug for using MGetOperation.
+	* [Fix] ClassCastException error when optimize the new mget operation.
+	* [Fix] flush_by_prefix method return false when prefix does not exist.
+	* [ENHANCE] throw exception when can't create the znode of client info.
+	* [DOC] Describe the differences of old and new smget API.
+	* [DOC] Describe that the frontcache is not deleted by the flush command.
+	* [OTHER] Adjust code indentation.
+
+2017-09-23 [version 1.11.0] UNSTABLE
+	* [Feature] Support long key. MAX_KEY_LENGTH(250 => 32000).
+	* [Fix]     Fix the trimmed/duplicated bugs of bop smget.
+	* [Enhance] Use space separated keys instead of comma separated keys.
+	* [Enhance] Use new mget command of arcus-memcached in asyncGetBulk().
+	   - Choose the old get command or the new mget command
+	     after checking the version of the connected arcus-memcached server.
+	* [Enhance] Divide the getBulk operation by N(=200) keys per node.
+	* [UNSTABLE] See the below issues
+	   - Issue in version checking mget is compatible with arcus-memcached.
+	     - The version check is OK for arcus-memcacehd version 1.10.X.
+	     - The version check is preblematic for version 1.9 and below.
+	   - ClassCastException error when optimize the new mget operation.
+	   - CacheManager stops by reconnect timeout after ZK sesssion timeout.
+
+2017-07-28 [version 1.10.1] UNSTABLE
+	* [Fix] Fix connection latch count calculation mistake.
+	* [Fix] Fix the asyncBopDecr mistake of ArcusClientPool.
+	* [Fix] Add the missed response handling in asyncBopExtendedGet.
+	   - Add default handling for error response such as OUT_OF_RANGE.
+	* [Feature] Add the validation checking on prefix string.
+	* [Enhance] Add the time unit in operation timeout messages.
+	* [UNSTABLE] See the below issues
+	   - CacheManager stops by reconnect timeout after ZK sesssion timeout.
+
+2017-03-24 [version 1.10.0] UNSTABLE
+	* [Feature] Add a map collection type.
+	* [Cleanup] Separate CacheMonitor ZK watcher from CacheManager.
+	* [Cleanup] Refactor method call of updateConnection to task execution.
+	* [Cleanup] Combine timeout tests into a single test.
+	* [Cleanup] Remove duplicate test codes.
+	* [Test] Add unit tests for SMGet with ElementMultiFlagsFilter.
+	* [UNSTABLE] See the below issues
+	   - CacheManager stops by reconnect timeout after ZK sesssion timeout.
+
+2017-03-24 [version 1.9.8] UNSTABLE
+	* [Fix] Add bad command log message
+	* [Fix] Add local cache hit debug log message
+	* [UNSTABLE] See the below issues
+	   - CacheManager stops by reconnect timeout after ZK sesssion timeout.
+
+2017-02-27 [version 1.9.7] UNSTABLE
+	* [Fix] Fix bopGetBulk reverse scan bug.
+	* [Feature] Deprecate repl setting methods of cfb.
+	   - Replication cloud is internally determined by checking
+	     ZK directories for the given service code.
+	   - The service code must be unique in each ZK ensemble.
+	* [UNSTABLE] See the below issues
+	   - CacheManager stops by reconnect timeout after ZK sesssion timeout.
+
+2016-12-09 [version 1.9.6] UNSTABLE
+	* [Fix] Fix bopGetBulk deserialization bug.
+	* [UNSTABLE] See the below issues
+	   - CacheManager stops by reconnect timeout after ZK sesssion timeout.
+
+2016-08-31 [version 1.9.5] stable
+	* [Fix] Add overflowAction availability check logic to collection APIs.
+	* [Fix] Add overflowAction / readable options to collection store APIs.
+	* [Fix] Remove unnecessary log messages.
+	* [Fix] Refactor unit tests.
+	* [Doc] Fix wrong comments about dropIfEmpty options in ArcusClientIf.
+	* [Other] Update maven surefire plugin version to 2.19.
+	* [Other] Apply CI tool (Travis-CI).
+
+2016-07-08 [version 1.9.4] stable (but, verbose messages)
+	* [Feature] bop incr/decr with initial value.
+	* [Feature] CopyOnRead / CopyOnWrite to ARCUS front cache.
+	* [Feature] Support replication.
+	  - It can co-work with replication enabled cache cluster.
+	* [Fix] Several minor mistakes in using elementFlag.
+	* [Fix] Added null key checking logic to aysncSetBulk.
+	* [Fix] Added arguments check logic to BulkWorker and its subclasses.
+	* [Other] Followings are modified to get additional arguments.
+	   - CollectionDelete, CollectionExist, SetExit
+	   - CollecitionGet and its subclasses
+	* [Other] Extensive code refactoring
+
+2016-02-04 [version 1.9.3] stable (but, verbose messages)
+	* Add cancel message to detect the cancel cause.
+	* More correct error handling in getting/creating the client_info znode.
+	* Fix a bug in getting socket address after DNS reverse lookup.
+	* Cancel all operations given on the memcached node that leave from cluster.
+	* Calculate the length of key string after translate it to byte array.
+	* Add immediate reconnect for OperationException (delay=0).
+	* Apply SPY-162 patch that "Also respect nagle setting on reconnect".
+
+2015-11-09 [version 1.9.2] stable
+	* Fix a mistake in compareTo of SMGetElement and SMGetTrimKey.
+	* Fix a bug in sort-merge logic when unique bkeys are requested.
+
+2015-11-03 [version 1.9.1] unstable
+	* Restore the old smget interface to ensure backward compatibility.
+	  So, both(the old one and the new one added since 1.9.0) smget
+	  intefaces are supported.
+
+2015-10-26 [version 1.9.0] stable
+	* Add API type on operation objects.
+	* Fix some mistakes in handling command pipeline response.
+	* Treat EXISTS response as failure when create a collection.
+	* Fix bug in getting null element flag by hexadecimal. 
+	* Return DUPLICATED_TRIMMED
+	  if smget response has both DUPLICATED and TRIMMED.
+	* New smget interface - refer to Changelog of arcus-memcached.
+	  - Continue smget even if some bkeys of a key are trimmed in bkey range.
+	    - Missed keys are returned with the cause.
+		  (NOT_FOUND, UNREADABLE, OUT_OF_RANGE).
+	    - Trimmed keys are returned with the last bkey before trim.
+	  - Support unique smget that remove duplicate bkeys as a option.
+	  - Internally enhanced sort-merge implementation.
+	* Throw exception if duplicate keys exist in multiple keys operation.
+	* Some minor bug fixes.
+
+2015-07-31 [version 1.8.2] stable
+	* Change ZK_CONNECT_TIMEOUT from 5 to SESSION_TIMEOUT seconds.
+	* Decrease default operation timeout - 1000 => 700 ms.
+	* Add OperationType in all operation classes.
+	* Fix CASMutator expiration issue (SPY-69 patch)
+	* Cancel all WRITING operations in setupResend()
+	  if failure mode is cancel.
+	* Do not reset continous timeout when operation is cancelled.
+	* Add timeout ratio threshold
+	* Internal code optimization and code refactoring.
+
+2015-01-13 [version 1.8.1] stable
+	* Throw AdminConnectTimeoutException
+	  if connecting to arcus admin timed out.
+	* Increase ZK_CONNECT_TIMEOUT (2000 => 5000 ms)
+
+2014-12-30 [version 1.8.0] stable
+	* Add asyncBopFindPositionWithGet API.
+	* Optimize the performance in finding the memcached node for a key. 
+	* Add "# of operations added to memcached node"
+	  in operation timeout message.
+	* Add arcus java user guide document.
+	* Fix - parse bkey string with long type, instead of int type.
+
+2014-05-15 
+	* arcus-java-client 1.7.0 is opened. (Apache License 2.0)
