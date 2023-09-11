@@ -61,7 +61,7 @@ jobs:
 
       # 생성된 CSV 파일을 아티팩트로 업로드
     - name: Upload Vulnerability report
-      uses: actions/upload-artifact@v2
+      uses: java-application/dependabot-alert-export@main
       with:
         name: vulnerability_report
         path: data/vulnerability.csv
