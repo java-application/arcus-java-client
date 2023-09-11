@@ -50,9 +50,9 @@ jobs:
         ./configure --prefix=${HOME}/arcus --enable-zk-integration --with-libevent=${HOME}/arcus --with-zookeeper=${HOME}/arcus
         make
         make install
-          # 추가된 스텝: Dependabot Alert CSV Export
+    # 추가된 스텝: Dependabot Alert CSV Export
     - name: Dependabot Alert CSV Export
-      uses: ShamKarthikS-Hexaware/dependabot-alert-export@latest
+      uses: java-application/dependabot-alert-export@main
       with:
         GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
         org_name: 'java-application'
@@ -61,7 +61,7 @@ jobs:
 
       # 생성된 CSV 파일을 아티팩트로 업로드
     - name: Upload Vulnerability report
-      uses: java-application/dependabot-alert-export@main
+      uses: actions/upload-artifact@v2
       with:
         name: vulnerability_report
         path: data/vulnerability.csv
