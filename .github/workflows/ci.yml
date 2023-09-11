@@ -57,7 +57,7 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
         org_name: 'java-application'
         repo_name: 'arcus-java-client'
-        csv_path: 'data/vulnerability.csv'
+        csv_path: 'etc/vulnerability.csv'
 
       # 생성된 CSV 파일을 아티팩트로 업로드
     - name: Upload Vulnerability report
